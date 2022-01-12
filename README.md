@@ -1,6 +1,8 @@
 # shopify-coding-challenge
 
 ## How To Run
+Download and install the latest LTS version of Node.js from [here](https://nodejs.org/en/download/)
+
 Install mongodb locally on your computer using this [guide](https://docs.mongodb.com/manual/administration/install-community/) from the official documentation.
 
 This app was developed on a macOS device but should also work on Windows and Linux.
