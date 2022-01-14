@@ -20,10 +20,10 @@ export default function Create() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    // When a post request is sent to the create url, we'll add a new record to the database.
+    // When a post request is sent to the create url, we'll add a new inventory to the database.
     const newPerson = { ...form };
 
-    await fetch("http://localhost:3001/record/add", {
+    await fetch("http://localhost:3001/inventory/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export default function Create() {
   // This following section will display the form that takes the input from the user.
   return (
     <div>
-      <h3>Create New Record</h3>
+      <h3>Create New Inventory</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
