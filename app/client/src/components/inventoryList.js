@@ -72,10 +72,10 @@ export default function InventoryItemList() {
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
+            <th>Id</th>
             <th>Name</th>
-            <th>Position</th>
-            <th>Level</th>
-            <th>Action</th>
+            <th>Description</th>
+            <th>Quantity</th>
           </tr>
         </thead>
         <tbody>{inventoryItemList()}</tbody>
