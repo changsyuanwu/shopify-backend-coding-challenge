@@ -6,7 +6,7 @@ describe('Web site availability', () => {
       }); 
       it('Sanity listings web site', () => {
         cy.visit('http://localhost:3000');
-        cy.contains('Create Record').should('exist');
+        cy.contains('Create inventory').should('exist');
       });
       it('Test Adding Employee listings', () => {
         cy.visit('http://localhost:3000/create');
@@ -24,7 +24,7 @@ describe('Web site availability', () => {
                   cy.visit(url);
                   cy.get('#position').clear();
                   cy.get('#position').type("Position2");
-                  cy.contains("Update Record").click({ force: true });
+                  cy.contains("Update inventory").click({ force: true });
                   cy.visit('http://localhost:3000');
                   cy.contains('Position2').should('exist');
               });
