@@ -42,10 +42,20 @@ export default function Create() {
   // This following section will display the form that takes the input from the user.
   return (
     <div>
-      <h3>Create New Inventory</h3>
+      <h3>Update Inventory Item</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="id">Id: </label>
+          <input
+            type="text"
+            className="form-control"
+            id="id"
+            value={form.id}
+            onChange={(e) => updateForm({ id: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="name">Name: </label>
           <input
             type="text"
             className="form-control"
@@ -55,57 +65,31 @@ export default function Create() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Position</label>
+          <label htmlFor="description">Description: </label>
           <input
             type="text"
             className="form-control"
-            id="position"
-            value={form.position}
-            onChange={(e) => updateForm({ position: e.target.value })}
+            id="description"
+            value={form.description}
+            onChange={(e) => updateForm({ description: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionIntern"
-              value="Intern"
-              checked={form.level === "Intern"}
-              onChange={(e) => updateForm({ level: e.target.value })}
-            />
-            <label htmlFor="positionIntern" className="form-check-label">Intern</label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionJunior"
-              value="Junior"
-              checked={form.level === "Junior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
-            />
-            <label htmlFor="positionJunior" className="form-check-label">Junior</label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionSenior"
-              value="Senior"
-              checked={form.level === "Senior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
-            />
-            <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-          </div>
+          <label htmlFor="quantity">Quantity: </label>
+          <input
+            type="text"
+            className="form-control"
+            id="quantity"
+            value={form.quantity}
+            onChange={(e) => updateForm({ quantity: e.target.value })}
+          />
         </div>
+        <br />
+
         <div className="form-group">
           <input
             type="submit"
-            value="Create person"
+            value="Update Inventory Item"
             className="btn btn-primary"
           />
         </div>
