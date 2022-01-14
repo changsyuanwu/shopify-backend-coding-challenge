@@ -45,13 +45,13 @@ export default function Create() {
       <h3>Create Inventory Item</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="id">Id: </label>
+          <label htmlFor="code">Code: </label>
           <input
             type="text"
             className="form-control"
-            id="id"
-            value={form.id}
-            onChange={(e) => updateForm({ id: e.target.value })}
+            id="code"
+            value={form.code}
+            onChange={(e) => updateForm({ code: e.target.value })}
           />
         </div>
         <div className="form-group">

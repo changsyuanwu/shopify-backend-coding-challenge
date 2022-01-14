@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 
 const InventoryItem = (props) => (
   <tr>
+    <td>{props.inventoryItem.code}</td>
     <td>{props.inventoryItem.name}</td>
-    <td>{props.inventoryItem.position}</td>
-    <td>{props.inventoryItem.level}</td>
+    <td>{props.inventoryItem.description}</td>
+    <td>{props.inventoryItem.quantity}</td>
     <td>
       <Link className="btn btn-link" to={`/edit/${props.inventoryItem._id}`}>Edit</Link> |
       <button className="btn btn-link"
@@ -72,7 +73,7 @@ export default function InventoryItemList() {
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Code</th>
             <th>Name</th>
             <th>Description</th>
             <th>Quantity</th>

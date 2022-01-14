@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router";
 
 export default function Edit() {
   const [form, setForm] = useState({
+    code: "",
     name: "",
     description: "",
     quantity: "",
@@ -49,7 +50,7 @@ export default function Edit() {
   async function onSubmit(e) {
     e.preventDefault();
     const editedInventoryItem = {
-      id: form.id,
+      code: form.code,
       name: form.name,
       description: form.description,
       quantity: form.quantity,
@@ -73,13 +74,13 @@ export default function Edit() {
       <h3>Update Inventory Item</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="id">Id: </label>
+          <label htmlFor="Code">Code: </label>
           <input
             type="text"
             className="form-control"
-            id="id"
-            value={form.id}
-            onChange={(e) => updateForm({ id: e.target.value })}
+            id="code"
+            value={form.code}
+            onChange={(e) => updateForm({ code: e.target.value })}
           />
         </div>
         <div className="form-group">

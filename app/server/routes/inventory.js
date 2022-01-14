@@ -30,7 +30,7 @@ inventoryRouter.route("/inventory/:id").get((req, res) => {
 inventoryRouter.route("/inventory/add").post((req, response) => {
   const db_connect = db.getDb();
   const myobj = {
-    id: req.body.id,
+    code: req.body.code,
     name: req.body.name,
     description: req.body.description,
     quantity: req.body.quantity,
@@ -47,9 +47,10 @@ inventoryRouter.route("/update/:id").post((req, response) => {
   const queryParams = { _id: ObjectId( req.params.id )};
   const newValues = {
     $set: {
+      code: req.body.code,
       name: req.body.name,
-      position: req.body.position,
-      level: req.body.level,
+      description: req.body.description,
+      quantity: req.body.quantity,
     },
   };
   db_connect
