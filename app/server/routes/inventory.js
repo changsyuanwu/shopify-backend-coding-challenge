@@ -1,52 +1,51 @@
 const express = require("express");
 const inventoryRouter = express.Router();
-const dbo = require("../db/conn");
+const db = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
-
-// This section will help you get a list of all the inventory items.
-inventoryRouter.route("/inventory").get(function (req, res) {
-  let db_connect = dbo.getDb();
+inventoryRouter.route("/inventory").get((req, res) => {
+  const db_connect = db.getDb();
   db_connect
     .collection("inventory")
     .find({})
-    .toArray(function (err, result) {
+    .toArray((err, result) => {
       if (err) throw err;
       res.json(result);
     });
 });
 
-// This section will help you get a single record by id
-inventoryRouter.route("/inventory/:id").get(function (req, res) {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+
+inventoryRouter.route("/inventory/:id").get((req, res) => {
+  const db_connect = db.getDb();
+  const queryParams = { _id: ObjectId( req.params.id )};
   db_connect
       .collection("inventory")
-      .findOne(myquery, function (err, result) {
+      .findOne(queryParams, (err, result) => {
         if (err) throw err;
         res.json(result);
       });
 });
 
-// This section will help you create a new record.
-inventoryRouter.route("/inventory/add").post(function (req, response) {
-  let db_connect = dbo.getDb();
-  let myobj = {
+
+inventoryRouter.route("/inventory/add").post((req, response) => {
+  const db_connect = db.getDb();
+  const myobj = {
+    id: req.body.id,
     name: req.body.name,
-    position: req.body.position,
-    level: req.body.level,
+    description: req.body.description,
+    quantity: req.body.quantity,
   };
-  db_connect.collection("inventory").insertOne(myobj, function (err, res) {
+  db_connect.collection("inventory").insertOne(myobj, (err, res) => {
     if (err) throw err;
     response.json(res);
   });
 });
 
-// This section will help you update a record by id.
-inventoryRouter.route("/update/:id").post(function (req, response) {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
-  let newvalues = {
+
+inventoryRouter.route("/update/:id").post((req, response) => {
+  const db_connect = db.getDb();
+  const queryParams = { _id: ObjectId( req.params.id )};
+  const newValues = {
     $set: {
       name: req.body.name,
       position: req.body.position,
@@ -55,18 +54,18 @@ inventoryRouter.route("/update/:id").post(function (req, response) {
   };
   db_connect
     .collection("inventory")
-    .updateOne(myquery, newvalues, function (err, res) {
+    .updateOne(queryParams, newValues, (err, res) => {
       if (err) throw err;
       console.log("1 document updated");
       response.json(res);
     });
 });
 
-// This section will help you delete a record
+
 inventoryRouter.route("/:id").delete((req, response) => {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
-  db_connect.collection("inventory").deleteOne(myquery, function (err, obj) {
+  const db_connect = db.getDb();
+  const queryParams = { _id: ObjectId( req.params.id )};
+  db_connect.collection("inventory").deleteOne(queryParams, (err, obj) => {
     if (err) throw err;
     console.log("1 document deleted");
     response.json(obj);
