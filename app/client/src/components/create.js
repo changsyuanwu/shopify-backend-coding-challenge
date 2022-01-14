@@ -42,7 +42,7 @@ export default function Create() {
   // This following section will display the form that takes the input from the user.
   return (
     <div>
-      <h3>Update Inventory Item</h3>
+      <h3>Create Inventory Item</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="id">Id: </label>
@@ -89,7 +89,7 @@ export default function Create() {
         <div className="form-group">
           <input
             type="submit"
-            value="Update Inventory Item"
+            value="Create Inventory Item"
             className="btn btn-primary"
           />
         </div>
