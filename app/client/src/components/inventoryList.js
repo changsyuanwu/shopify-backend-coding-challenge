@@ -24,7 +24,6 @@ const InventoryItem = (props) => (
 export default function InventoryItemList() {
   const [inventoryItems, setInventoryItems] = useState([]);
 
-  // This method fetches the inventoryItems from the database.
   useEffect(() => {
     async function getInventoryItems() {
       const response = await fetch(`http://localhost:3001/inventory/`);
@@ -44,7 +43,6 @@ export default function InventoryItemList() {
     return; 
   }, [inventoryItems.length]);
 
-  // This method will delete an inventoryItem
   async function deleteInventoryItem(id) {
     await fetch(`http://localhost:3001/inventory/${id}`, {
       method: "DELETE"
@@ -54,7 +52,6 @@ export default function InventoryItemList() {
     setInventoryItems(newInventoryItems);
   }
 
-  // This method will map out the inventory items on the table
   function inventoryItemList() {
     return inventoryItems.map((inventoryItem) => {
       return (
@@ -67,7 +64,6 @@ export default function InventoryItemList() {
     });
   }
 
-  // This following section will display the table with the inventory items.
   return (
     <div>
       <h3>Inventory List</h3>

@@ -39,7 +39,6 @@ export default function Edit() {
     return;
   }, [params.id, navigate]);
 
-  // These methods will update the state properties.
   function updateForm(value) {
     return setForm((prev) => {
       return { ...prev, ...value };
@@ -55,7 +54,6 @@ export default function Edit() {
       quantity: form.quantity,
     };
 
-    // This will send a post request to update the data in the database.
     await fetch(`http://localhost:3001/inventory/${params.id}`, {
       method: "PUT",
       body: JSON.stringify(editedInventoryItem),
@@ -67,7 +65,6 @@ export default function Edit() {
     navigate("/");
   }
 
-  // This following section will display the form that takes input from the user to update the data.
   return (
     <div>
       <h3>Update Inventory Item</h3>
