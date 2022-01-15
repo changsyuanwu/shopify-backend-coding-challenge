@@ -6,7 +6,7 @@ const InventoryItemSchema = Joi.object({
   productCode: Joi.string().trim().required(),
   name: Joi.string().trim().required(),
   description: Joi.string().trim().required(),
-  quantity: Joi.number().integer().positive().required(),
+  quantity: Joi.number().integer().min(0).required(),
 });
 
 class InventoryController {
