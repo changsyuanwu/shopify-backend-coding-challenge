@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { CSVLink, CSVDownload } from "react-csv";
 
 const InventoryItem = (props) => (
   <tr>
@@ -53,7 +54,7 @@ export default function InventoryItemList() {
     setInventoryItems(newInventoryItems);
   }
 
-  // This method will map out the inventoryItems on the table
+  // This method will map out the inventory items on the table
   function inventoryItemList() {
     return inventoryItems.map((inventoryItem) => {
       return (
@@ -66,11 +67,21 @@ export default function InventoryItemList() {
     });
   }
 
-  // This following section will display the table with the inventoryItems of individuals.
+  // This following section will display the table with the inventory items.
   return (
     <div>
       <h3>Inventory List</h3>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
+      <CSVLink 
+        data={inventoryItems} 
+        filename={"shopify_inventory.csv"}
+        className="btn btn-primary"
+      >
+        Export to CSV
+      </CSVLink>
+      <table 
+        className="table table-striped" 
+        style={{ marginTop: 20 }}
+      >
         <thead>
           <tr>
             <th>Code</th>
@@ -81,6 +92,7 @@ export default function InventoryItemList() {
         </thead>
         <tbody>{inventoryItemList()}</tbody>
       </table>
+      
     </div>
   );
 }
