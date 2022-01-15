@@ -57,8 +57,8 @@ export default function Edit() {
     };
 
     // This will send a post request to update the data in the database.
-    await fetch(`http://localhost:3001/update/${params.id}`, {
-      method: "POST",
+    await fetch(`http://localhost:3001/inventory/${params.id}`, {
+      method: "PUT",
       body: JSON.stringify(editedInventoryItem),
       headers: {
         "Content-Type": "application/json",

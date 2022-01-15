@@ -9,9 +9,9 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-const inventoryRouter = require("./routes/inventory");
+const inventoryRouter = require("./routes/inventoryRouter");
 
-app.use(inventoryRouter);
+app.use("/inventory", inventoryRouter);
 
 app.listen(port, () => {
   // connect to mongodb when server starts

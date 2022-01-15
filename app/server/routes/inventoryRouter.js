@@ -6,7 +6,7 @@ const Json2csvParser = require("json2csv").Parser;
 const fs = require("fs");
 
 // get all inventory items
-inventoryRouter.route("/inventory").get((req, res) => {
+inventoryRouter.get("/", (req, res) => {
   const db = dbClient.getDb();
   db.collection("inventory")
     .find({})
@@ -16,18 +16,8 @@ inventoryRouter.route("/inventory").get((req, res) => {
     });
 });
 
-// get inventory item using _id
-inventoryRouter.route("/inventory/:id").get((req, res) => {
-  const db = dbClient.getDb();
-  const queryParams = { _id: ObjectId(req.params.id) };
-  db.collection("inventory").findOne(queryParams, (err, result) => {
-    if (err) throw err;
-    res.json(result);
-  });
-});
-
 // create inventory item
-inventoryRouter.route("/inventory/add").post((req, response) => {
+inventoryRouter.post("/add", (req, response) => {
   const db = dbClient.getDb();
   const newInventoryItem = {
     code: req.body.code,
@@ -41,8 +31,18 @@ inventoryRouter.route("/inventory/add").post((req, response) => {
   });
 });
 
+// get inventory item using _id
+inventoryRouter.get("/:id", (req, res) => {
+  const db = dbClient.getDb();
+  const queryParams = { _id: ObjectId(req.params.id) };
+  db.collection("inventory").findOne(queryParams, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+});
+
 // update/edit inventory item using _id
-inventoryRouter.route("/update/:id").post((req, response) => {
+inventoryRouter.put("/:id", (req, response) => {
   const db = dbClient.getDb();
   const queryParams = { _id: ObjectId(req.params.id) };
   const newValues = {
@@ -61,7 +61,7 @@ inventoryRouter.route("/update/:id").post((req, response) => {
 });
 
 // delete inventory item using _id
-inventoryRouter.route("/:id").delete((req, response) => {
+inventoryRouter.delete("/:id", (req, response) => {
   const db = dbClient.getDb();
   const queryParams = { _id: ObjectId(req.params.id) };
   db.collection("inventory").deleteOne(queryParams, (err, obj) => {
@@ -72,7 +72,7 @@ inventoryRouter.route("/:id").delete((req, response) => {
 });
 
 
-inventoryRouter.route("/inventory/csv").get((req, res) => {
+inventoryRouter.get("/csv", (req, res) => {
   const db = dbClient.getDb();
   db.collection("inventory")
     .find({})

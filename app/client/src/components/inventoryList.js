@@ -46,7 +46,7 @@ export default function InventoryItemList() {
 
   // This method will delete an inventoryItem
   async function deleteInventoryItem(id) {
-    await fetch(`http://localhost:3001/${id}`, {
+    await fetch(`http://localhost:3001/inventory/${id}`, {
       method: "DELETE"
     });
 
