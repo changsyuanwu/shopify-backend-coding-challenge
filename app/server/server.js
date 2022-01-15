@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config({ path: "./config.env" });
-const dbClient = require("./db/client");
+const dbClient = require("./db/mongoClient");
 
 const port = process.env.PORT || 3001;
 

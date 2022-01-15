@@ -4,7 +4,7 @@ import { CSVLink } from "react-csv";
 
 const InventoryItem = (props) => (
   <tr>
-    <td>{props.inventoryItem.code}</td>
+    <td>{props.inventoryItem.productCode}</td>
     <td>{props.inventoryItem.name}</td>
     <td>{props.inventoryItem.description}</td>
     <td>{props.inventoryItem.quantity}</td>

@@ -1,9 +1,9 @@
 const Joi = require("joi");
-const dbClient = require("../db/client");
+const dbClient = require("../db/mongoClient");
 const ObjectId = require("mongodb").ObjectId;
 
 const InventoryItemSchema = Joi.object({
-  code: Joi.string().trim().required(),
+  productCode: Joi.string().trim().required(),
   name: Joi.string().trim().required(),
   description: Joi.string().trim().required(),
   quantity: Joi.number().integer().positive().required(),
@@ -23,15 +23,15 @@ class InventoryController {
   static postNewInventoryItem(req, res) {
     // Validate the request body
     const validatedBody = InventoryItemSchema.validate(req.body);
-    if (validatedBody.error) {
-      return res.json(validatedBody.error);
+    if (validatedBody.error) { 
+      return res.status(400).json(validatedBody.error);
     } else {
       req.body = validatedBody.value;
     }
 
     const db = dbClient.getDb();
     const newInventoryItem = {
-      code: req.body.code,
+      productCode: req.body.productCode,
       name: req.body.name,
       description: req.body.description,
       quantity: req.body.quantity,
@@ -55,7 +55,7 @@ class InventoryController {
     // Validate the request body
     const validatedBody = InventoryItemSchema.validate(req.body);
     if (validatedBody.error) {
-      return res.json(validatedBody.error);
+      return res.status(400).json(validatedBody.error);
     } else {
       req.body = validatedBody.value;
     }
@@ -64,7 +64,7 @@ class InventoryController {
     const queryParams = { _id: ObjectId(req.params.id) };
     const newValues = {
       $set: {
-        code: req.body.code,
+        productCode: req.body.productCode,
         name: req.body.name,
         description: req.body.description,
         quantity: req.body.quantity,
@@ -84,7 +84,10 @@ class InventoryController {
     const db = dbClient.getDb();
     const queryParams = { _id: ObjectId(req.params.id) };
     db.collection("inventory").deleteOne(queryParams, (err, result) => {
-      if (err) throw err;
+      if (err) {
+        res.status(500).json(err);
+        throw err;
+      }
       res.json(result);
     });
   }
