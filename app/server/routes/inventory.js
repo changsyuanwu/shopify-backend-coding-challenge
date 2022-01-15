@@ -2,7 +2,10 @@ const express = require("express");
 const inventoryRouter = express.Router();
 const dbClient = require("../db/client");
 const ObjectId = require("mongodb").ObjectId;
+const Json2csvParser = require("json2csv").Parser;
+const fs = require("fs");
 
+// get all inventory items
 inventoryRouter.route("/inventory").get((req, res) => {
   const db = dbClient.getDb();
   db.collection("inventory")
@@ -68,12 +71,22 @@ inventoryRouter.route("/:id").delete((req, response) => {
   });
 });
 
-inventoryRouter.route("/inventory").get((req, res) => {
+
+inventoryRouter.route("/inventory/csv").get((req, res) => {
   const db = dbClient.getDb();
   db.collection("inventory")
     .find({})
     .toArray((err, result) => {
       if (err) throw err;
+
+      const json2csvParser = new Json2csvParser({ header: true});
+      const csvData = json2csvParser.parse(result);
+
+      fs.writeFile("shopify_inventory.csv", csvData, (err) => {
+        if (err) throw err;
+        console.log("Wrote shopify_inventory.csv file successfully");
+      });
+
       res.json(result);
     });
 });
