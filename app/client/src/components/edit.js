@@ -6,8 +6,7 @@ export default function Edit() {
     code: "",
     name: "",
     description: "",
-    quantity: "",
-    inventory: [],
+    quantity: 0,
   });
   const params = useParams();
   const navigate = useNavigate();

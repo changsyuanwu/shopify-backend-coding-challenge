@@ -6,7 +6,7 @@ export default function Create() {
     code: "",
     name: "",
     description: "",
-    quantity: "",
+    quantity: 0,
   });
   const navigate = useNavigate();
 
@@ -36,7 +36,12 @@ export default function Create() {
       return;
     });
 
-    setForm({ name: "", position: "", level: "" });
+    setForm({
+      code: "",
+      name: "",
+      description: "",
+      quantity: 0,
+    });
     navigate("/");
   }
 
