@@ -3,9 +3,10 @@ import { useNavigate } from "react-router";
 
 export default function Create() {
   const [form, setForm] = useState({
+    code: "",
     name: "",
-    position: "",
-    level: "",
+    description: "",
+    quantity: "",
   });
   const navigate = useNavigate();
 
@@ -45,7 +46,7 @@ export default function Create() {
       <h3>Create Inventory Item</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="code">Code: </label>
+          <label htmlFor="code">Product Code: </label>
           <input
             type="text"
             className="form-control"

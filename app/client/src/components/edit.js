@@ -74,7 +74,7 @@ export default function Edit() {
       <h3>Update Inventory Item</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="Code">Code: </label>
+          <label htmlFor="Code">Product Code: </label>
           <input
             type="text"
             className="form-control"

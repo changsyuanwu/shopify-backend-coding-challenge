@@ -50,7 +50,7 @@ export default function InventoryItemList() {
       method: "DELETE"
     });
 
-    const newInventoryItems = inventoryItems.filter((el) => el._id !== id);
+    const newInventoryItems = inventoryItems.filter((item) => item._id !== id);
     setInventoryItems(newInventoryItems);
   }
 
@@ -84,7 +84,7 @@ export default function InventoryItemList() {
       >
         <thead>
           <tr>
-            <th>Code</th>
+            <th>Product Code</th>
             <th>Name</th>
             <th>Description</th>
             <th>Quantity</th>
