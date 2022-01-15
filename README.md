@@ -24,3 +24,5 @@ cd app/client
 npm install
 npm start
 ```
+
+Go to `localhost:3000` in your browser to use the inventory app!
