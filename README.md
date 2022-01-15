@@ -1,4 +1,4 @@
-# shopify-coding-challenge
+# shopify-coding-challenge-2022
 
 ## Installing required dependencies
 Download and install the latest LTS version of Node.js from [here](https://nodejs.org/en/download/)
